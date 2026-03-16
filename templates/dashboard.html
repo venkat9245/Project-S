@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Project-S Malware Scanner</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<h1>PROJECT-S SECURITY SCANNER</h1>
+
+<form method="POST" enctype="multipart/form-data">
+
+<input type="text" name="url" placeholder="Enter URL">
+
+<br><br>
+
+<input type="file" name="file">
+
+<br><br>
+
+<button type="submit">SCAN</button>
+
+</form>
+
+{% if result %}
+
+<div class="result">
+
+<h2>Target: {{result.target}}</h2>
+<h2>Status: {{result.status}}</h2>
+
+<div class="bar">
+<div class="progress" style="width:{{result.score}}%;"></div>
+</div>
+
+<p>Threat Score: {{result.score}} / 100</p>
+
+<h3>Analysis</h3>
+
+<ul>
+{% for r in result.reasons %}
+<li>{{r}}</li>
+{% endfor %}
+</ul>
+
+</div>
+
+{% endif %}
+
+</body>
+</html>
