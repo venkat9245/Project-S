@@ -3,6 +3,8 @@
 <head>
 <title>Project-S Malware Scanner</title>
 <link rel="stylesheet" href="/static/style.css">
+<link rel="manifest" href="/static/manifest.json">
+<meta name="theme-color" content="#22c55e">
 </head>
 <p style="text-align:center;">
     🔍 View Source Code: 
@@ -10,7 +12,11 @@
         GitHub Repository
     </a>
 </p>
-
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/static/sw.js');
+}
+</script>
 <body>
 <div style="background:#0f172a; color:#e2e8f0; padding:10px; text-align:center; font-size:14px;">
     🔒 This is a demo cybersecurity tool. No personal data is stored. 
