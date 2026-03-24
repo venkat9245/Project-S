@@ -41,3 +41,20 @@ height:20px;
 background:red;
 height:20px;
 }
+body {
+    background-color: #020617;
+    color: #e2e8f0;
+    font-family: monospace;
+}
+
+button {
+    background-color: #22c55e;
+    color: black;
+    border-radius: 5px;
+}
+
+input {
+    background-color: #0f172a;
+    color: white;
+    border: 1px solid #22c55e;
+}
