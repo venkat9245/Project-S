@@ -58,3 +58,84 @@ input {
     color: white;
     border: 1px solid #22c55e;
 }
+
+/* ===== Minimal Cyber Background ===== */
+body {
+    margin: 0;
+    background: #020617;
+    color: #e2e8f0;
+    font-family: 'Orbitron', sans-serif;
+    overflow-x: hidden;
+}
+
+/* ===== Elegant Big S ===== */
+.bg-s {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    font-size: 420px;
+    font-weight: 900;
+    font-family: 'Orbitron', sans-serif;
+
+    color: rgba(34, 197, 94, 0.05); /* very soft */
+
+    letter-spacing: 20px;
+
+    z-index: 0;
+    pointer-events: none;
+
+    animation: floatS 12s ease-in-out infinite;
+}
+
+/* Smooth floating (NOT roaming) */
+@keyframes floatS {
+    0%, 100% {
+        transform: translate(-50%, -50%) translateY(0px);
+    }
+    50% {
+        transform: translate(-50%, -50%) translateY(-25px);
+    }
+}
+
+/* ===== Scan line effect ===== */
+.bg-s::after {
+    content: "S";
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: rgba(34, 197, 94, 0.08);
+    
+    clip-path: inset(0 0 50% 0);
+    animation: scan 4s linear infinite;
+}
+
+/* scanning line animation */
+@keyframes scan {
+    0% {
+        clip-path: inset(0 0 100% 0);
+    }
+    100% {
+        clip-path: inset(100% 0 0 0);
+    }
+}
+
+/* ===== Subtle grid overlay ===== */
+body::before {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(34,197,94,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(34,197,94,0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+    z-index: 0;
+}
+
+/* ===== Keep UI above ===== */
+h1, form, .result {
+    position: relative;
+    z-index: 2;
+}
