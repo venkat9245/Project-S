@@ -1,141 +1,140 @@
-body{
-background:#0b0f19;
-color:#00ff9c;
-font-family:monospace;
-text-align:center;
-}
-
-h1{
-font-size:40px;
-text-shadow:0 0 10px #00ff9c;
-}
-
-input,button{
-padding:10px;
-margin:10px;
-border-radius:6px;
-}
-
-button{
-background:#00ff9c;
-border:none;
-cursor:pointer;
-}
-
-.result{
-margin-top:30px;
-padding:20px;
-border:2px solid red;
-width:450px;
-margin-left:auto;
-margin-right:auto;
-}
-
-.bar{
-width:100%;
-background:#333;
-height:20px;
-}
-
-.progress{
-background:red;
-height:20px;
-}
 body {
-    background-color: #020617;
-    color: #e2e8f0;
-    font-family: monospace;
+  margin: 0;
+  font-family: 'Orbitron', sans-serif;
+  color: #e2e8f0;
+  overflow: hidden;
+  background: black;
 }
 
-button {
-    background-color: #22c55e;
-    color: black;
-    border-radius: 5px;
-}
-
-input {
-    background-color: #0f172a;
-    color: white;
-    border: 1px solid #22c55e;
-}
-
-/* ===== Minimal Cyber Background ===== */
-body {
-    margin: 0;
-    background: #020617;
-    color: #e2e8f0;
-    font-family: 'Orbitron', sans-serif;
-    overflow-x: hidden;
-}
-
-/* ===== Elegant Big S ===== */
-.bg-s {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    
-    font-size: 420px;
-    font-weight: 900;
-    font-family: 'Orbitron', sans-serif;
-
-    color: rgba(34, 197, 94, 0.05); /* very soft */
-
-    letter-spacing: 20px;
-
-    z-index: 0;
-    pointer-events: none;
-
-    animation: floatS 12s ease-in-out infinite;
-}
-
-/* Smooth floating (NOT roaming) */
-@keyframes floatS {
-    0%, 100% {
-        transform: translate(-50%, -50%) translateY(0px);
-    }
-    50% {
-        transform: translate(-50%, -50%) translateY(-25px);
-    }
-}
-
-/* ===== Scan line effect ===== */
-.bg-s::after {
-    content: "S";
-    position: absolute;
-    top: 0;
-    left: 0;
-    color: rgba(34, 197, 94, 0.08);
-    
-    clip-path: inset(0 0 50% 0);
-    animation: scan 4s linear infinite;
-}
-
-/* scanning line animation */
-@keyframes scan {
-    0% {
-        clip-path: inset(0 0 100% 0);
-    }
-    100% {
-        clip-path: inset(100% 0 0 0);
-    }
-}
-
-/* ===== Subtle grid overlay ===== */
+/* Animated grid cyber background */
 body::before {
-    content: "";
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background-image: 
-        linear-gradient(rgba(34,197,94,0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(34,197,94,0.05) 1px, transparent 1px);
-    background-size: 60px 60px;
-    z-index: 0;
+  content: "";
+  position: fixed;
+  width: 200%;
+  height: 200%;
+  background: 
+    linear-gradient(rgba(34,197,94,0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34,197,94,0.1) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: moveGrid 10s linear infinite;
+  z-index: -1;
 }
 
-/* ===== Keep UI above ===== */
-h1, form, .result {
-    position: relative;
-    z-index: 2;
+/* Glow gradient layer */
+body::after {
+  content: "";
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(34,197,94,0.15), transparent 70%);
+  animation: pulse 5s infinite alternate;
+  z-index: -1;
+}
+
+@keyframes moveGrid {
+  0% { transform: translate(0,0); }
+  100% { transform: translate(-40px, -40px); }
+}
+
+@keyframes pulse {
+  0% { opacity: 0.3; }
+  100% { opacity: 0.6; }
+}
+/* Container */
+.container {
+  width: 90%;
+  max-width: 600px;
+  text-align: center;
+}
+
+/* Title */
+h1 {
+  font-size: 32px;
+  color: #22c55e;
+  text-shadow: 0 0 15px #22c55e;
+}
+
+.subtitle {
+  color: #94a3b8;
+  margin-bottom: 30px;
+}
+
+/* Scan box */
+.scan-box {
+  background: rgba(15, 23, 42, 0.8);
+  padding: 25px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 25px rgba(34, 197, 94, 0.2);
+}
+
+/* Inputs */
+input[type="text"],
+input[type="file"] {
+  width: 90%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background: #020617;
+  color: white;
+}
+
+/* Button */
+button {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 25px;
+  background: #22c55e;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #4ade80;
+  transform: scale(1.05);
+}
+
+/* Result box */
+.result {
+  margin-top: 30px;
+  padding: 20px;
+  border-radius: 15px;
+  background: rgba(2, 6, 23, 0.8);
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
+}
+
+/* Progress bar */
+.bar {
+  width: 100%;
+  height: 15px;
+  background: #1e293b;
+  border-radius: 10px;
+  margin: 15px 0;
+}
+
+.progress {
+  height: 100%;
+  background: linear-gradient(90deg, #22c55e, #4ade80);
+  border-radius: 10px;
+  transition: width 0.5s;
+}
+
+/* List */
+ul {
+  text-align: left;
+}
+
+li {
+  margin: 5px 0;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 24px;
+  }
 }

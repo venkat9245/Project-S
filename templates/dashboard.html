@@ -1,74 +1,59 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Project-S Malware Scanner</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+<title>Project-S Scanner</title>
 
-<link rel="stylesheet" href="/static/style.css">
-<link rel="manifest" href="/static/manifest.json">
-<meta name="theme-color" content="#22c55e">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<p style="text-align:center;">
-    🔍 View Source Code: 
-    <a href="https://github.com/venkat9245/Project-S" target="_blank">
-        GitHub Repository
-    </a>
-</p>
-<script>
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/static/sw.js');
-}
-</script>
+
 <body>
-<div class="cyber-bg"></div>
-<div class="roaming-s">S</div>
-<div class="bg-s">S</div>	
-<div style="background:#0f172a; color:#e2e8f0; padding:10px; text-align:center; font-size:14px;">
-    🔒 This is a demo cybersecurity tool. No personal data is stored. 
-    Please avoid uploading sensitive files.
-</div>
-<div class="roaming-s">S</div>
 
-<h1>PROJECT-S SECURITY SCANNER</h1>
+<div class="container">
+<div class="progress" id="progressBar" style="width:{{result.score}}%;"></div>
+    <h1>⚡ PROJECT-S SECURITY SCANNER</h1>
 
-<form method="POST" enctype="multipart/form-data">
+    <p class="subtitle">Advanced Malware Detection System</p>
 
-<input type="text" name="url" placeholder="Enter URL">
+    <form method="POST" enctype="multipart/form-data" class="scan-box">
 
-<br><br>
+        <input type="text" name="url" placeholder="🔗 Enter URL to scan">
 
-<input type="file" name="file">
+        <span>OR</span>
 
-<br><br>
+        <input type="file" name="file">
 
-<button type="submit">SCAN</button>
+        <button type="submit">🚀 Scan Now</button>
 
-</form>
+    </form>
 
-{% if result %}
+    {% if result %}
+    <div class="result">
 
-<div class="result">
+        <h2>🎯 Target: {{result.target}}</h2>
+        <h2>Status: {{result.status}}</h2>
 
-<h2>Target: {{result.target}}</h2>
-<h2>Status: {{result.status}}</h2>
+        <div class="bar">
+            <div class="progress" style="width:{{result.score}}%;"></div>
+        </div>
 
-<div class="bar">
-<div class="progress" style="width:{{result.score}}%;"></div>
-</div>
+        <p>Threat Score: {{result.score}} / 100</p>
 
-<p>Threat Score: {{result.score}} / 100</p>
+        <h3>🧠 Analysis</h3>
+        <ul>
+        {% for r in result.reasons %}
+        <li>{{r}}</li>
+        {% endfor %}
+        </ul>
 
-<h3>Analysis</h3>
-
-<ul>
-{% for r in result.reasons %}
-<li>{{r}}</li>
-{% endfor %}
-</ul>
+    </div>
+    {% endif %}
 
 </div>
 
-{% endif %}
+<script src="{{ url_for('static', filename='script.js') }}"></script>
 
 </body>
 </html>
