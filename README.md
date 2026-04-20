@@ -68,7 +68,7 @@ python3 app.py
 
 Open:
 
-http://127.0.0.1:5000
+https://project-s-fisz.onrender.com
 
 #🚀 Production Mode (Recommended)
 
